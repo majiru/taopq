@@ -106,6 +106,15 @@ install(FILES
   DESTINATION ${TAOPQ_INSTALL_CONFIGDIR}
 )
 
+if(WIN32)
+	add_definitions(-D WIN32)
+	IF(MSVC)
+		SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc")
+		SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /EHsc")
+	ENDIF(MSVC)
+	include_directories("C:\\Program Files\\PostgreSQL\\11\\libpq")
+endif()
+
 export(EXPORT taopq-targets FILE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Targets.cmake NAMESPACE taocpp::)
 export(PACKAGE taopq)
 
