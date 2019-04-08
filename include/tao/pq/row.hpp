@@ -57,7 +57,9 @@ namespace tao::pq
       [[nodiscard]] std::enable_if_t< result_traits_size< T > == 0, T > get( const std::size_t ) const
       {
          static_assert( !std::is_same< T, T >::value, "tao::pq::result_traits<T>::size yields zero" );
-         __builtin_unreachable();
+		#ifndef WIN32
+			__builtin_unreachable();
+		#endif
       }
 
       template< typename T >

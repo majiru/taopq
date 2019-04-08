@@ -38,7 +38,9 @@ namespace tao::pq
       [[nodiscard]] std::enable_if_t< result_traits_size< T > != 1, T > as() const
       {
          static_assert( !std::is_same_v< T, T >, "tao::pq::result_traits<T>::size does not yield exactly one column for T, which is required for field access" );
-         __builtin_unreachable();
+		#ifndef WIN32
+			__builtin_unreachable();
+		#endif
       }
 
       template< typename T >
